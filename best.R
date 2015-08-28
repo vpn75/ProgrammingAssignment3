@@ -25,9 +25,11 @@ best <- function(state, outcome) {
   if (!state %in% data[,"State"]) {
     stop("invalid state")
   }
-  
+  #Subset data by state parameter
   sub <- data[data$State == state,]
+  #Remove NA values
   sub <- na.omit(sub)
+  #Get lowest mortality rate
   low <- min(sub[,3])
   #Return name of hospital with lowest mortality rate
   return(sub[sub[,3] == low,1])
